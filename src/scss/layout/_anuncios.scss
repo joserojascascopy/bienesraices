@@ -1,0 +1,53 @@
+@include tablet {
+    .contenedor-anuncios {
+        @include grid(3, 2rem);
+    }
+}
+
+// .contenedor-anuncios {
+//     margin-bottom: 3rem;
+// }
+
+.card {
+    background-color: lighten($gris, 5);
+    border: 1px solid lighten($grisOscuro, 60);
+    padding-bottom: 2rem; // Espaciado entre el boton y el borde de la tarjeta
+    margin-bottom: 2rem; // Espaciado entre las tarjetas
+
+    .contenido-anuncio {
+        padding: 0 2rem;
+
+        h3, p {
+            margin: 1rem 0;
+        }
+    }
+
+    .precio {
+        color: $verde;
+        font-weight: $bold;
+        font-size: 3rem;
+    }
+}
+
+.iconos-caracteristicas {
+    @include grid(3, 2rem);
+
+    list-style: none;
+    padding: 0;
+    gap: 4rem;
+    
+
+    img {
+        height: 3.5rem;
+    }
+
+    .icono {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    p {
+        font-weight: $bold;
+    }
+}

@@ -1,0 +1,16 @@
+.contenido-nosotros {
+    @include tablet {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        column-gap: 2rem;
+    }
+}
+
+.texto-nosotros {
+    h4 {
+        font-weight: $black;
+        text-align: left;
+        font-size: 2.2rem;
+        margin: 0;
+    }
+}

@@ -1,0 +1,21 @@
+.footer {
+    background-color: $grisOscuro;
+    padding: 2.5rem 0;
+    margin-bottom: 0;
+
+    .contenedor-footer {
+        display: flex;
+        flex-direction: column;
+    
+        @include tablet {
+            flex-direction: row;
+            justify-content: space-between;
+        }
+    }
+
+    .copyright {
+        color: $blanco;
+        text-align: center;
+        margin: 0;
+    }
+}

@@ -1,0 +1,32 @@
+.contenedor-anuncio {
+    max-width: 80rem;
+    margin: 0 auto;
+}
+
+.precio {
+    color: $verde;
+    font-weight: $bold;
+    font-size: 3rem;
+}
+
+.iconos-anuncio {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    padding-left: 0;
+
+    .icono {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 5rem;
+
+        img {
+            width: 6rem;
+        }
+
+        p {
+            font-weight: $bold;
+        }
+    }
+}

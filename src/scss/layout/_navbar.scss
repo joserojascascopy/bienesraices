@@ -1,0 +1,118 @@
+.barra {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 3rem;
+
+    @include tablet {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+}
+
+.navegacion {
+    // display: none;
+    visibility: hidden; // Con esto si se le puede dar animación
+    opacity: 0;
+    height: 0;
+    transition: visibility .3s ease-in-out, opacity .3s linear, height .6s linear;
+
+    @include tablet {
+        visibility: visible;
+        opacity: 1;
+        height: auto;
+        display: flex;
+    }
+
+    a {
+        color: $blanco;
+        font-size: 2.2rem;
+        display: block;
+        /* Para que los enlaces puedan estar uno debajo del otro, en este caso utilizamos display: block; ya que .navegacion no hereda el display:flex y flex-direction: column; que hay en .barra por ser nieto y no hijo directo */
+        text-align: center;
+
+        @include tablet {
+            font-size: 1.8rem;
+            margin-right: 2rem;
+            // &:last-of-type {
+            //     margin-right: 0;
+            // }
+        }
+    }
+}
+
+/* Menu de hamburguesa */
+
+.mobile-menu {
+    @include tablet {
+        display: none;
+    }
+
+    img {
+        width: 5rem;
+    }
+}
+
+.mostrar {
+    // display: block;
+    visibility: visible;
+    opacity: 1;
+    height: auto;
+
+    // @include tablet {
+    //     display: flex;
+    // }
+}
+
+.footer {
+    .navegacion {
+        visibility: visible;
+        opacity: 1;
+        height: auto;
+        display: block;
+
+        @include tablet {
+            display: flex;
+        }
+    }
+}
+
+// Dark Mode
+
+.nav-right {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    @include tablet {
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .dark-mode {
+        filter: invert(100%);
+        margin-top: 2rem;
+
+        @include tablet {
+            margin-top: 0;
+        }
+        
+        &:hover {
+            cursor: pointer;
+        }
+
+        img {
+            width: 3rem;
+        }
+    }
+
+    .navegacion {
+        order: 2;
+    }
+
+    @include tablet {
+        .dark-mode {
+            order: 2;
+        }
+    }
+}
