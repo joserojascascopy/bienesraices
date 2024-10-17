@@ -31,7 +31,7 @@ addTemplate('header');
                         <p>4</p>
                     </li>
                 </ul>
-                <a href="anuncio.html" class="boton-amarillo-block">Ver Propiedades</a>
+                <a href="anuncio.php" class="boton-amarillo-block">Ver Propiedades</a>
             </div> <!-- .contenido-anuncio -->
         </div> <!-- .card -->
 
@@ -59,7 +59,7 @@ addTemplate('header');
                         <p>4</p>
                     </li>
                 </ul>
-                <a href="anuncio.html" class="boton-amarillo-block">Ver Propiedades</a>
+                <a href="anuncio.php" class="boton-amarillo-block">Ver Propiedades</a>
             </div> <!-- .contenido-anuncio -->
         </div> <!-- .card -->
 
@@ -87,7 +87,7 @@ addTemplate('header');
                         <p>4</p>
                     </li>
                 </ul>
-                <a href="anuncio.html" class="boton-amarillo-block">Ver Propiedades</a>
+                <a href="anuncio.php" class="boton-amarillo-block">Ver Propiedades</a>
             </div> <!-- .contenido-anuncio -->
         </div> <!-- .card -->
 
@@ -115,7 +115,7 @@ addTemplate('header');
                         <p>4</p>
                     </li>
                 </ul>
-                <a href="anuncio.html" class="boton-amarillo-block">Ver Propiedades</a>
+                <a href="anuncio.php" class="boton-amarillo-block">Ver Propiedades</a>
             </div> <!-- .contenido-anuncio -->
         </div> <!-- .card -->
 
@@ -143,7 +143,7 @@ addTemplate('header');
                         <p>4</p>
                     </li>
                 </ul>
-                <a href="anuncio.html" class="boton-amarillo-block">Ver Propiedades</a>
+                <a href="anuncio.php" class="boton-amarillo-block">Ver Propiedades</a>
             </div> <!-- .contenido-anuncio -->
         </div> <!-- .card -->
 
@@ -171,7 +171,7 @@ addTemplate('header');
                         <p>4</p>
                     </li>
                 </ul>
-                <a href="anuncio.html" class="boton-amarillo-block">Ver Propiedades</a>
+                <a href="anuncio.php" class="boton-amarillo-block">Ver Propiedades</a>
             </div> <!-- .contenido-anuncio -->
         </div> <!-- .card -->
 

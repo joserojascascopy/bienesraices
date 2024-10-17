@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bienes Raices</title>
-    <link rel="stylesheet" href="/bienesraices/build/css/app.css">
+    <link rel="stylesheet" href="/build/css/app.css">
 </head>
 
 <body>
@@ -14,10 +14,10 @@
         <div class="contenedor contenido-header">
             <div class="barra">
                 <a href="index.php">
-                    <img class="logo-header" src="build/img/logo.svg" alt="Logo">
+                    <img class="logo-header" src="/build/img/logo.svg" alt="Logo">
                 </a>
                 <div class="mobile-menu">
-                    <img src="build/img/barras.svg" alt="Menu de Hamburguesa">
+                    <img src="/build/img/barras.svg" alt="Menu de Hamburguesa">
                 </div>
                 <div class="nav-right">
                     <nav class="navegacion">
@@ -27,7 +27,7 @@
                         <a href="contacto.php">Contacto</a>
                     </nav> <!-- .navegacion -->
                     <div class="dark-mode">
-                        <img src="build/img/dark-mode.svg" alt="Boton Dark Mode">
+                        <img src="/build/img/dark-mode.svg" alt="Boton Dark Mode">
                     </div> <!-- .dark-mode -->
                 </div>
             </div> <!-- .barra -->

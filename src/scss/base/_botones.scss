@@ -23,9 +23,17 @@
     }
     
     .boton-verde {
-        @include boton($verde, inline);
-    
+        @include boton($verde, block);
         padding: 1rem 3rem;
-        display: block;
     }
+}
+
+.boton-verde {
+    @include boton($verde, inline);
+    padding: 1rem 3rem;
+}
+
+.boton {
+    margin-top: 1rem;
+    border: none;
 }

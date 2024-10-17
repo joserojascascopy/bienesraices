@@ -57,7 +57,7 @@ addTemplate('header', $inicio = true);
                         <p>4</p>
                     </li>
                 </ul>
-                <a href="anuncio.html" class="boton-amarillo-block">Ver Propiedades</a>
+                <a href="anuncio.php" class="boton-amarillo-block">Ver Propiedades</a>
             </div> <!-- .contenido-anuncio -->
         </div> <!-- .card -->
         <div class="card">
@@ -84,7 +84,7 @@ addTemplate('header', $inicio = true);
                         <p>4</p>
                     </li>
                 </ul>
-                <a href="anuncio.html" class="boton-amarillo-block">Ver Propiedades</a>
+                <a href="anuncio.php" class="boton-amarillo-block">Ver Propiedades</a>
             </div> <!-- .contenido-anuncio -->
         </div> <!-- .card -->
         <div class="card">
@@ -111,19 +111,19 @@ addTemplate('header', $inicio = true);
                         <p>4</p>
                     </li>
                 </ul>
-                <a href="anuncio.html" class="boton-amarillo-block">Ver Propiedades</a>
+                <a href="anuncio.php" class="boton-amarillo-block">Ver Propiedades</a>
             </div> <!-- .contenido-anuncio -->
         </div> <!-- .card -->
     </div> <!-- .contenedor-auncios -->
     <div class="boton-anuncios">
-        <a href="anuncios.html" class="boton-verde">Ver Todas</a>
+        <a href="anuncios.php" class="boton-verde">Ver Todas</a>
     </div>
 </section>
 
 <section class="imagen-contacto">
     <h2>Encuentra la casa de tus sueños</h2>
     <p>Llena el formulario de contacto y un asesor se pondrá en contacto contigo en la brevedad</p>
-    <a href="contacto.html" class="boton-amarillo">Contactános</a>
+    <a href="contacto.php" class="boton-amarillo">Contactános</a>
 </section> <!-- .imagen-contacto -->
 
 <section class="contenedor seccion seccion-blog">
@@ -138,7 +138,7 @@ addTemplate('header', $inicio = true);
                 </picture>
             </div>
             <div class="texto-entrada">
-                <a href="entrada.html">
+                <a href="entrada.php">
                     <h4>Terraza en el techo de tu casa</h4>
                     <p>Escrito el: <span>25/09/2024</span> por: <span>Admin</span></p>
                     <p>
@@ -157,7 +157,7 @@ addTemplate('header', $inicio = true);
                 </picture>
             </div>
             <div class="texto-entrada">
-                <a href="entrada.html">
+                <a href="entrada.php">
                     <h4>Guía para la decoración de tu hogar</h4>
                     <p>Escrito el: <span>25/09/2024</span> por: <span>Admin</span></p>
                     <p>Maximiza el espacio en tu hogar con esta guía, aprende a combinar muebles y colores para

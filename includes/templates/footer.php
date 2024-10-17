@@ -1,10 +1,10 @@
 <footer class="footer seccion">
         <div class="contenedor contenedor-footer">
             <nav class="navegacion">
-                <a href="nosotros.html">Nosotros</a>
-                <a href="anuncios.html">Anuncios</a>
-                <a href="blog.html">Blog</a>
-                <a href="contacto.html">Contacto</a>
+                <a href="nosotros.php">Nosotros</a>
+                <a href="anuncios.php">Anuncios</a>
+                <a href="blog.php">Blog</a>
+                <a href="contacto.php">Contacto</a>
             </nav> <!-- .navegacion -->
         </div> <!-- .contenedor-footer -->
 
@@ -15,7 +15,7 @@
         <p class="copyright">Todos los derechos reservados <?php echo $año ?> &copy;</p>
     </footer> <!-- footer -->
 
-    <script src="build/js/bundle.min.js"></script>
+    <script src="/build/js/bundle.min.js"></script>
 </body>
 
 </html>
