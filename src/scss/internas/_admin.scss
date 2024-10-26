@@ -1,0 +1,16 @@
+.alerta {
+    padding: .5rem;
+    text-align: center;
+    color: $blanco;
+    margin: 1rem 0;
+    font-weight: $bold;
+    text-transform: uppercase;
+
+    &.error { // se pone & porque estan al mismo nivel
+        background-color: $rojo;
+    }
+
+    &.exito {
+        background-color: $verde;
+    }
+}
