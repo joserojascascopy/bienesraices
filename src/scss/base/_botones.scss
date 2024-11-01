@@ -1,0 +1,53 @@
+// .boton-amarillo {
+//     background-color: $amarillo;
+//     color: $blanco;
+//     padding: 1rem 0;
+//     display: block;
+//     text-align: center;
+//     font-weight: $bold;
+// }
+
+.boton-amarillo-block {
+    @include boton($amarillo, block);
+}
+
+.boton-amarillo {
+    @include boton($amarillo, inline-block);
+    padding: 1rem 3rem;
+}
+
+.boton-anuncios {
+    @include tablet {
+        display: flex;
+        justify-content: end;
+    }
+    
+    .boton-verde {
+        @include boton($verde, block);
+        padding: 1rem 3rem;
+    }
+}
+
+.boton-verde {
+    @include boton($verde, inline);
+    padding: 1rem 3rem;
+}
+
+.boton {
+    margin-top: 1rem;
+    border: none;
+}
+
+.boton-rojo-block {
+    @include boton($rojo, inline-block);
+    border: none;
+    width: 100%;
+    padding: 1.5rem 0;
+    margin: .5rem 0;
+    cursor: pointer;
+}
+
+.boton-verde-block {
+    @include boton($verde, block);
+    margin: .5rem 0;
+}

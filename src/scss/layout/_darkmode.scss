@@ -1,0 +1,54 @@
+.dark {
+    background-color: darken($grisOscuro, 10);
+
+    h1, h2, h3, h4, p {
+        color: $blanco;
+    }
+
+    .contenedor-anuncios {
+        .card {
+            background-color: $grisOscuro;
+            border: 1px solid lighten($grisOscuro, 40);
+        }
+    }
+    
+    .contenido-anuncio {
+        .icono {
+            img {
+                filter: invert(100%);
+            }
+        }
+    }
+
+    .contenedor-anuncio {
+        .precio {
+            color: $verde;
+            font-weight: $bold;
+            font-size: 3rem;
+        }
+    }
+
+    .form {
+        label,
+        legend,
+        p {
+            color: $gris;
+        }
+
+        input:not([type="submit"]),
+        textarea,
+        select {
+            background-color: $grisOscuro;
+            color: $blanco;
+            border: 1px solid $grisOscuro;
+        }
+    }
+
+    .propiedades {
+        tbody {
+            td {
+                color: $blanco;
+            }
+        }
+    }
+}
