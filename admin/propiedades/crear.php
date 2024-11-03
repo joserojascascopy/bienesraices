@@ -1,4 +1,11 @@
 <?php
+require '../../includes/funciones.php';
+$auth = auth();
+
+if(!$auth) {
+    header('Location: /index.php');
+}
+
 // Base de datos
 require '../../includes/config/database.php';
 $db = connectBD();
@@ -127,7 +134,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 // Header
-require '../../includes/funciones.php';
 addTemplate('header');
 ?>
 

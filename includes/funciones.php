@@ -2,6 +2,16 @@
 
 require 'app.php';
 
-function addTemplate(string $nombre, bool $inicio = false, int $limite = null ) {
+function addTemplate(string $nombre, bool $inicio = false, int $limite = null)
+{
     include TEMPLATES_URL . "$nombre.php";
+}
+
+function auth() : bool {
+    session_start();
+    $auth = $_SESSION['login'];
+    if($auth) {
+        return true;
+    }
+    return false;
 }
