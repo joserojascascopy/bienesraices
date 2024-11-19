@@ -1,6 +1,7 @@
 <?php
 require '../../includes/app.php';
 use App\Propiedad;
+use Intervention\Image\ImageManagerStatic as Image;
 
 auth();
 
@@ -30,38 +31,47 @@ $vendedorId = '';
 // Ejecutar el codigo despues de que el usuario envia el formulario
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Crea una nueva instancia al mandar el formulario
 
     $propiedad = new Propiedad($_POST);
+    
+    // SUBIDA DE ARCHIVOS
+
+    // Crear una carpeta
+
+    $carpetaImagenes = '../../imagenes/';
+
+    if(!is_dir($carpetaImagenes)) {
+         mkdir($carpetaImagenes); // Para crear un directorio
+    }
+
+    // Generar un nombre único para no sobre escribir las imagenes
+
+    $nombreImagen = md5( uniqid(rand(), true) ) . ".jpg";
+
+    // Setear la imagen 
+
+    // Realiza un resize a la imagen con la libreria "intervention/image"
+
+    if($_FILES['imagen']['tmp_name']) {
+        $image = Image::make($_FILES['imagen']['tmp_name'])->fit(800,600);
+        $propiedad->setImagen($nombreImagen);
+    }
+
+    // Validar
 
     $errores = $propiedad -> validar();
 
     // Revisar si el array de errores esta vacio
 
     if (empty($errores)) {
+        // Subir la imagen al servidor
 
-        $propiedad -> guardar();
-        
-        // SUBIDA DE ARCHIVOS
+        $image->save($carpetaImagenes . $nombreImagen);
 
-        // Crear una carpeta
+        $resultado = $propiedad -> guardar();
 
-        $carpetaImagenes = '../../imagenes/';
-
-        if(!is_dir($carpetaImagenes)) {
-            mkdir($carpetaImagenes); // Para crear un directorio
-        }
-
-        // Generar un nombre único para no sobre escribir las imagenes
-
-        $nombreImagen = md5( uniqid(rand(), true) ) . ".jpg";
-
-        // Subir la imagen 
-
-        move_uploaded_file($imagen['tmp_name'], $carpetaImagenes . $nombreImagen); // Valores: nombre temporal y la carpeta y nombre
-
-        // Insertar a la base de datos
-
-        $resultado = mysqli_query($db, $query);
+        // Mensaje 
 
         if ($resultado) {
             // Redireccionar al usuario para que no vuelvan a enviar el mismo formulario, o duplicar entradas en la base de datos
