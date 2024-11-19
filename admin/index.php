@@ -1,13 +1,13 @@
 <?php
-require '../includes/funciones.php';
+require '../includes/app.php';
+
 $auth = auth();
 
 if(!$auth) {
     header('Location: /index.php');
 }
 
-// Importar la conexión
-require '../includes/config/database.php';
+// Conexión a la DB
 
 $db = connectBD();
 

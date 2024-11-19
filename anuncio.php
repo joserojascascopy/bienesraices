@@ -1,4 +1,5 @@
 <?php
+require 'includes/app.php';
 // Accedemos al id de la propiedad a mostrar, del enlace
 
 $id = $_GET['id'];
@@ -10,7 +11,7 @@ if (!$id) {
 
 // Importamos la DB
 
-require 'includes/config/database.php';
+// require 'includes/config/database.php';
 
 // Guardamos la instancia de la conexión en una variable
 
@@ -29,7 +30,6 @@ if(!$resultado -> num_rows) {
 
 $propiedad = mysqli_fetch_assoc($resultado);
 
-require 'includes/funciones.php';
 addTemplate('header');
 ?>
 

@@ -1,13 +1,11 @@
 <?php
-require '../../includes/funciones.php';
-$auth = auth();
+require '../../includes/app.php';
+use App\Propiedad;
 
-if(!$auth) {
-    header('Location: /index.php');
-}
+auth();
 
 // Base de datos
-require '../../includes/config/database.php';
+
 $db = connectBD();
 
 // Consultar a la base de datos
@@ -17,7 +15,7 @@ $resultadoVendedores = mysqli_query($db, $consultaVendedores);
 
 // Arreglo con mensajes de errores
 
-$errores = [];
+$errores = Propiedad::getErrores();
 
 // Inicializamos las variables para evitar errores, si la página se carga por primera vez, las variables estarán definidas como cadenas vacías
 
@@ -30,77 +28,19 @@ $estacionamiento = '';
 $vendedorId = '';
 
 // Ejecutar el codigo despues de que el usuario envia el formulario
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-    // echo "<pre>";
-    // var_dump($_POST);
-    // echo "</pre>";
+    $propiedad = new Propiedad($_POST);
 
-    // Para leer las imagenes y los archivos se usa el superglobal files
-    
-    // echo "<pre>";
-    // var_dump($_FILES);
-    // echo "</pre>";
-
-    // Validar y Sanitizar
-    // La función mysqli_real_escape_string() en PHP se utiliza para escapar caracteres especiales en una cadena antes de usarla en una consulta SQL, lo que ayuda a prevenir inyecciones SQL
-
-    $titulo = mysqli_real_escape_string($db, $_POST['titulo']);
-    $precio = mysqli_real_escape_string($db, $_POST['precio']);
-    $descripcion = mysqli_real_escape_string($db, $_POST['descripcion']);
-    $habitaciones = mysqli_real_escape_string($db, $_POST['habitaciones']);
-    $wc = mysqli_real_escape_string($db, $_POST['wc']);
-    $estacionamiento = mysqli_real_escape_string($db, $_POST['estacionamiento']);
-    $vendedorId = mysqli_real_escape_string($db, $_POST['vendedor']);
-    $creado = date('y/m/d');
-
-    // Asignar files hacia una variable
-
-    $imagen = $_FILES['imagen'];
-
-    if (!$titulo) {
-        $errores[] = "Debes añadir un titulo";
-    }
-
-    if (!$precio) {
-        $errores[] = "El precio es obligatorio";
-    }
-
-    if (strlen($descripcion < 50)) {
-        $errores[] = "Debe tener al menos 50 caracteres";
-    }
-
-    if (!$habitaciones) {
-        $errores[] = "El número de habitaciones es obligatorio";
-    }
-
-    if (!$wc) {
-        $errores[] = "El número de baños es obligatorio";
-    }
-
-    if (!$estacionamiento) {
-        $errores[] = "El número de estacionamiento es obligatorio";
-    }
-
-    if (!$vendedorId) {
-        $errores[] = "Selecciona un vendedor";
-    }
-
-    if(!$imagen['name'] || $imagen['error']) { // PHP limita por default a 2 MB las imagenes, si tratamos de subir una imagen mas pesada, PHP retorna un tamaño cero pero tambien retorna que hay un error
-        $errores[] = 'La imagen es obligatoria';
-    }
-
-    // Validar por el tamaño de img (1 mb máximo)
-
-    $medida = 1000 * 1000;
-
-    if($imagen['size'] > $medida) {
-        $errores[] = "El tamaño de la imagen no puede ser mayor a 100 Kb";
-    }
+    $errores = $propiedad -> validar();
 
     // Revisar si el array de errores esta vacio
 
     if (empty($errores)) {
+
+        $propiedad -> guardar();
+        
         // SUBIDA DE ARCHIVOS
 
         // Crear una carpeta
@@ -120,9 +60,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         move_uploaded_file($imagen['tmp_name'], $carpetaImagenes . $nombreImagen); // Valores: nombre temporal y la carpeta y nombre
 
         // Insertar a la base de datos
-
-        $query = "INSERT INTO propiedades (titulo, precio, imagen, descripcion, habitaciones, wc, estacionamiento, creado, vendedores_id) VALUES
-        ('$titulo', '$precio', '$nombreImagen', '$descripcion', '$habitaciones', '$wc', '$estacionamiento', '$creado', '$vendedorId')";
 
         $resultado = mysqli_query($db, $query);
 
@@ -181,7 +118,7 @@ addTemplate('header');
 
         <fieldset>
             <legend>Vendedor</legend>
-            <select name="vendedor">
+            <select name="vendedores_id">
                 <option value="">-- Seleccione un vendedor --</option>
                 <?php while($row = mysqli_fetch_assoc($resultadoVendedores)) : ?>
                     <option <?php echo $vendedorId === $row['id'] ? 'selected' : ''; ?> value="<?php echo $row['id'] ?>"> 

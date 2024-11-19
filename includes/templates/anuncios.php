@@ -1,7 +1,7 @@
 <?php
 // Importar la base de datos 
 
-require 'includes/config/database.php'; // La ruta debe ser relativa al index.php
+// require 'includes/config/database.php'; // La ruta debe ser relativa al index.php
 $db = connectBD(); // Instancia de la conexión
 
 // Consulta a la BD

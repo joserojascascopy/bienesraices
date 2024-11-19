@@ -1,5 +1,5 @@
 <?php
-require 'includes/config/database.php';
+require 'includes/app.php';
 $db = connectBD();
 
 // Autenticar el usuario
@@ -7,9 +7,6 @@ $db = connectBD();
 $errores = [];
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // echo "<pre>";
-    // var_dump($_POST);
-    // echo "</pre>";
 
     $email = mysqli_real_escape_string($db, filter_var($_POST['email'], FILTER_VALIDATE_EMAIL));
     $password = mysqli_real_escape_string($db, $_POST['password']);
@@ -39,16 +36,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             if ($auth) {
                 // El usuario esta autenticado
+
                 session_start();
+
                 //Llenar el arreglo de la sesión
+
                 $_SESSION['usuario'] = $usuario['email'];
                 $_SESSION['login'] = true;
 
 
-                header('Location: admin/index.php');
-                // echo "<pre>";
-                // echo var_dump($_SESSION);
-                // echo "</pre>";
+                header('Location: /admin/index.php');
             } else {
                 // la contraseña es incorrecta
 
@@ -61,7 +58,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 // Include Header
-require 'includes/funciones.php';
 addTemplate('header');
 ?>
 
