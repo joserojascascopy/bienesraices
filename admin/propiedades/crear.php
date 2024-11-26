@@ -2,7 +2,8 @@
 require '../../includes/app.php';
 
 use App\Propiedad;
-use Intervention\Image\ImageManagerStatic as Image;
+use Intervention\Image\ImageManager;
+use Intervention\Image\Drivers\Gd\Driver;
 
 auth();
 
@@ -44,8 +45,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Realiza un resize a la imagen con la libreria "intervention/image"
 
-    if ($_FILES['propiedad']['tmp_name']['imagen']) {
-        $image = Image::make($_FILES['propiedad']['tmp_name']['imagen'])->fit(800, 600);
+    if ($_FILES['imagen']['tmp_name']) {
+        $manager = new ImageManager(new Driver());
+        $image = $manager->read($_FILES['imagen']['tmp_name'])->resize(800, 600);
         $propiedad->setImagen($nombreImagen);
     }
 
@@ -58,11 +60,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (empty($errores)) {
         // Subir la imagen al servidor
 
-        $image->save($carpetaImagenes . $nombreImagen);
-
         $resultado = $propiedad->guardar();
 
-        // Mensaje 
+        $image->save($carpetaImagenes . $nombreImagen); 
 
         if ($resultado) {
             // Redireccionar al usuario para que no vuelvan a enviar el mismo formulario, o duplicar entradas en la base de datos

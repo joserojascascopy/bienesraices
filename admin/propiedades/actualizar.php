@@ -15,7 +15,8 @@ if (!$id) {
 }
 
 use App\Propiedad;
-use Intervention\Image\ImageManagerStatic as Image;
+use Intervention\Image\ImageManager;
+use Intervention\Image\Drivers\Gd\Driver;
 
 $propiedad = Propiedad::find($id);
 
@@ -27,7 +28,7 @@ $errores = Propiedad::getErrores();
 
 // Ejecutar el codigo despues de que el usuario envia el formulario
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    
+
     // Asignar los atributos
 
     $args = $_POST['propiedad'];
@@ -44,17 +45,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $nombreImagen = md5(uniqid(rand(), true)) . ".jpg";
 
-    if ($_FILES['propiedad']['tmp_name']['imagen']) {
-        $image = Image::make($_FILES['propiedad']['tmp_name']['imagen'])->fit(800, 600);
+    if ($_FILES['imagen']['tmp_name']) {
+        $manager = new ImageManager(new Driver());
+        $image = $manager->read($_FILES['imagen']['tmp_name'])->resize(800, 600);
         $propiedad->setImagen($nombreImagen);
     }
-    
+
+
     // Revisar si el array de errores esta vacio
 
     if (empty($errores)) {
         // Almacenar la imagen
 
-        if(isset($image)){
+        if (isset($image)) {
             $image->save($carpetaImagenes . $nombreImagen);
         }
 

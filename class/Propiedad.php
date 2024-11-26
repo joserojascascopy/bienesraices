@@ -1,6 +1,7 @@
 <?php
 
 namespace App;
+
 class Propiedad
 {
     // DB
@@ -44,13 +45,14 @@ class Propiedad
         $this->vendedores_id = $args['vendedores_id'] ?? '';
     }
 
-    public function guardar() {
-        if(isset($this->id)) {
+    public function guardar()
+    {
+        if (isset($this->id) && !$this->id == '') {
             // Actualizar
-            $this->actualizar();
-        }else {
+            return $this->actualizar();
+        } else {
             // Creando un nuevo registro
-            $this->crear();
+            return $this->crear();
         }
     }
 
@@ -75,13 +77,14 @@ class Propiedad
         return $resultado;
     }
 
-    public function actualizar() {
+    public function actualizar()
+    {
         // Sanitizar los datos
         $atributos = $this->sanitizarAtributos();
 
         $valores = [];
 
-        foreach($atributos as $key => $value) {
+        foreach ($atributos as $key => $value) {
             $valores[] = "{$key} = '{$value}'";
         }
 
@@ -94,6 +97,22 @@ class Propiedad
         if ($resultado) {
             // Redireccionar al usuario para que no vuelvan a enviar el mismo formulario, o duplicar entradas en la base de datos
             header('Location: /admin/?resultado=2');
+        }
+    }
+
+    // Eliminar un registro
+
+    public function eliminar()
+    {
+        // Eliminar la
+        $query = "DELETE FROM propiedades WHERE id = ";
+        $query .= self::$db->escape_string($this->id);
+
+        $resultado = self::$db->query($query);
+
+        if ($resultado) {
+            $this->eliminarImagen();
+            header('Location: /admin/?resultado=3');
         }
     }
 
@@ -129,16 +148,27 @@ class Propiedad
 
         if (isset($this->id)) {
             // Comprobar si existe el archivo (si existe id estamos actualizando)
-        
-            $existeArchivo = file_exists(CARPETA_IMAGENES . $this->imagen);
-            if($existeArchivo) {
-                unlink(CARPETA_IMAGENES . $this->imagen);
-            }
+
+            $this->eliminarImagen();
         }
 
         // Asignar al atributo de imagen el nombre de la imagen
         if ($imagen) {
             $this->imagen = $imagen;
+        }
+    }
+
+    // Eliminar Imagen
+
+    public function eliminarImagen()
+    {
+        if (isset($this->id)) {
+            // Comprobar si existe el archivo (si existe id estamos actualizando/eliminando)
+
+            $existeArchivo = file_exists(CARPETA_IMAGENES . $this->imagen);
+            if ($existeArchivo) {
+                unlink(CARPETA_IMAGENES . $this->imagen);
+            }
         }
     }
 
