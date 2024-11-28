@@ -2,17 +2,19 @@
 require '../../includes/app.php';
 
 use App\Propiedad;
+use App\Vendedor;
 use Intervention\Image\ImageManager;
 use Intervention\Image\Drivers\Gd\Driver;
 
-auth();
+$auth = auth();
 
-// Consultar a la base de datos
+if(!$auth) {
+    header('Location: /index.php');
+}
 
-$consultaVendedores = "SELECT * FROM vendedores";
-$resultadoVendedores = mysqli_query($db, $consultaVendedores);
+// Consulta para los registros de vendedores
 
-$vendedorId = '';
+$vendedores = Vendedor::all();
 
 // Arreglo con mensajes de errores
 

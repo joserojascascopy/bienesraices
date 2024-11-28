@@ -15,15 +15,17 @@ if (!$id) {
 }
 
 use App\Propiedad;
+use App\Vendedor;
 use Intervention\Image\ImageManager;
 use Intervention\Image\Drivers\Gd\Driver;
 
+// Obtener los registros de una propiedad por su id
 $propiedad = Propiedad::find($id);
 
-// Consulta para los vendedores
-$consultaVendedores = "SELECT * FROM vendedores";
-$resultadoVendedores = mysqli_query($db, $consultaVendedores);
+// Obtener los registros de todos los vendedores
+$vendedores = Vendedor::all();
 
+// Acceder a los errores
 $errores = Propiedad::getErrores();
 
 // Ejecutar el codigo despues de que el usuario envia el formulario
