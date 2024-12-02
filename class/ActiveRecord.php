@@ -65,16 +65,12 @@ class ActiveRecord {
 
         $resultado = self::$db->query($query);
 
-        if ($resultado) {
-            // Redireccionar al usuario para que no vuelvan a enviar el mismo formulario, o duplicar entradas en la base de datos
-            header('Location: /admin/?resultado=2');
-        }
+        return $resultado;
     }
 
     // Eliminar un registro
 
     public function eliminar() {
-        // Eliminar la
         $query = "DELETE FROM " . static::$tabla . " WHERE id = ";
         $query .= self::$db->escape_string($this->id);
 

@@ -40,3 +40,35 @@ function validarTipoContenido($tipo) {
 
     return in_array($tipo, $tipos);
 }
+
+// Mostrar mensajes y/o notificación 
+
+function mostrarMensaje($resultado) {
+    $mensaje = '';
+
+    switch($resultado) {
+        case 1:
+            $mensaje = 'Anuncio Creado Correctamente';
+            break;
+        case 2:
+            $mensaje = 'Anuncio Actualizado Correctamente';
+            break;
+        case 3:
+            $mensaje = 'Anuncio Eliminado Correctamente';
+            break;
+        case 4:
+            $mensaje = 'Vendedor Eliminado Correctamente';
+            break;
+        case 5:
+            $mensaje = 'Vendedor Registrado Correctamente';
+            break;
+        case 6:
+            $mensaje = 'Vendedor Actualizado Correctamente';
+            break;
+        default:
+            $mensaje = false;
+            break;
+    }
+
+    return $mensaje;
+}

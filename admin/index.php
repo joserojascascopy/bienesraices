@@ -7,6 +7,7 @@ if(!$auth) {
     header('Location: /index.php');
 }
 
+// Importar clases
 use App\Propiedad;
 use App\Vendedor;
 
@@ -17,9 +18,10 @@ $vendedores = Vendedor::all();
 
 // Muestra un mensaje condicional
 
-$resultado = $_GET['resultado'] ?? null;
+$resultado = intval($_GET['resultado'] ?? null);
 
 if ($_SERVER['REQUEST_METHOD'] === "POST") {
+    // Validar id
     $id = $_POST['id'];
     $id = filter_var($id, FILTER_VALIDATE_INT);
 
@@ -53,19 +55,15 @@ addTemplate('header');
 
 <main class="contenedor seccion">
     <h1>Administrador de Bienes Raices</h1>
-    <?php if (intval($resultado) === 1) : ?>
-        <p class="alerta exito">Anuncio Creado Correctamente</p>
-    <?php elseif (intval($resultado) === 2) : ?>
-        <p class="alerta exito">Anuncio Actualizado Correctamente</p>
-    <?php elseif (intval($resultado) === 3) : ?>
-        <p class="alerta exito">Anuncio Eliminado Correctamente</p>
-    <?php elseif (intval($resultado) === 4) : ?>
-        <p class="alerta exito">Vendedor Eliminado Correctamente</p>
-    <?php endif; ?>
-    
-    <a class="boton boton-verde" href="./propiedades/crear.php">Nueva Propiedad</a>
+    <?php 
+        $mensaje = mostrarMensaje($resultado);
+
+        if($mensaje) : ?>
+            <p class="alerta exito"><?php echo s($mensaje); ?></p>
+        <?php endif ?>
 
     <h2>Propiedades</h2>
+    <a class="boton boton-verde" href="./propiedades/crear.php">Nueva Propiedad</a>
     <table class="propiedades">
         <thead>
             <tr>
@@ -97,6 +95,7 @@ addTemplate('header');
     </table>
 
     <h2>Vendedores</h2>
+    <a class="boton boton-verde" href="./vendedores/crear.php">Nuevo/a Vendedor/a</a>
     <table class="propiedades">
         <thead>
             <tr>
@@ -118,7 +117,7 @@ addTemplate('header');
                             <input type="hidden" name="tipo" value="vendedor">
                             <input type="submit" class="boton-rojo-block" value="Eliminar">
                         </form>
-                        <a href="./propiedades/actualizar.php?id=<?php echo $vendedor->id; ?>" class="boton-verde-block">Actualizar</a>
+                        <a href="./vendedores/actualizar.php?id=<?php echo $vendedor->id; ?>" class="boton-verde-block">Actualizar</a>
                     </td>
                 </tr>
             <?php endforeach; ?>

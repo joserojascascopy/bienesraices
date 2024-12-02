@@ -64,6 +64,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
         $resultado = $propiedad->guardar();
+
+        if ($resultado) {
+            // Redireccionar al usuario para que no vuelvan a enviar el mismo formulario, o duplicar entradas en la base de datos
+            header('Location: /admin/?resultado=2');
+        }
     }
 }
 
