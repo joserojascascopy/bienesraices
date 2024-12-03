@@ -7,9 +7,7 @@ addTemplate('header');
     <h1>Casas y Departamentos en Venta</h1>
 
     <?php
-    $limite = 6;
-    addTemplate('anuncios', false, $limite);
-
+    addTemplate('anuncios', false);
     ?>
 
 </main> <!-- main -->
